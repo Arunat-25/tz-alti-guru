@@ -1,0 +1,38 @@
+networks:
+  marketplace:
+    driver: bridge
+
+volumes:
+  postgres_data:
+
+services:
+  api:
+    build:
+      context: .
+      network: host
+    container_name: "marketplace-api"
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database
+    networks:
+      - marketplace
+
+  database:
+    image: postgres:17
+    container_name: "marketplace-db"
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d 
+    networks:
+      - marketplace

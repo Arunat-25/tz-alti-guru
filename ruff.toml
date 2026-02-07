@@ -1,0 +1,33 @@
+# ruff.toml
+line-length = 100
+indent-width = 4
+
+[lint]
+# Включаем популярные правила
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort (импорты)
+    "UP",  # pyupgrade (современный синтаксис)
+    "RUF", # Ruff-specific rules
+]
+
+# Отключаем излишне строгие правила
+ignore = [
+    "E501",  # line too long (мы сами контролируем длину)
+    "D",     # docstrings 
+]
+
+[lint.isort]
+# Группируем импорты как в официальной документации FastAPI
+known-first-party = ["src"]
+combine-as-imports = true
+split-on-trailing-comma = false
+
+[format]
+# Форматирование в стиле Black (стандарт для Python)
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
