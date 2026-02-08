@@ -1,6 +1,8 @@
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
-engine = create_async_engine(url="postgresql+asyncpg://admin:secret@database:5432/marketplace")
+from config import settings
+
+engine = create_async_engine(url=settings.DATABASE_URL)
 session_factory = async_sessionmaker(engine)
 
 

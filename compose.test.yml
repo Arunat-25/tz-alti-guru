@@ -1,0 +1,12 @@
+services:
+  test-database:
+    image: postgres:17
+    container_name: test-marketplace-db
+    environment:
+      POSTGRES_USER: test-admin
+      POSTGRES_PASSWORD: test-secret
+      POSTGRES_DB: test-marketplace
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d

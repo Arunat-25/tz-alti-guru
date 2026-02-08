@@ -12,7 +12,7 @@ async def get_product(product_id: int, session: AsyncSession):
     result = await session.execute(text(query), {"product_id": product_id})
     product = result.mappings().fetchone()
     if not product:
-        raise ProductNotFound("Proouct not found")
+        raise ProductNotFound("Product not found")
     return product
 
 
