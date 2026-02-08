@@ -4,7 +4,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 BASE_DIR = Path(__file__).resolve().parent
 
-ENV_PATH = BASE_DIR / ".env_test"  # заменить на .env_test для тестов
+ENV_PATH = BASE_DIR / ".env"  # заменить на .env_test для тестов
 
 
 class Settings(BaseSettings):
